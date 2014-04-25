@@ -1,0 +1,22 @@
+--and function answers are all boolean elements of a boolean list equal True?
+and = \ bs -> null bs || head bs && and (tail bs)
+
+--or function answers does any component of the boolean list bs equal True?
+or = \bs -> not (null bs) && ( head bs || or (tail bs))
+
+--issorted function answers is the list sorted in numerical order?
+issorted = \ns -> (null ns || null (tail ns)) || head ns <= head (tail ns)
+                     && issorted (tail ns)
+                     
+--range function gives a list of the numbers from number 'lo' up 
+--to number 'hi', inclusive
+range = \x -> \y -> if (x > y) then 
+                        [] 
+                    else  
+                        x : range (x+1) y
+                        
+--copies function gives a list of 'n' copies of item 'x'
+copies = \n -> \x -> if n == 0 then 
+                         [] 
+                     else 
+                         x : copies (n-1) x 

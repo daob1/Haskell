@@ -1,0 +1,24 @@
+--partialSums ns: Returns the list of partial sums of the numeric list 'ns'.
+partialSums = partialSums' 0
+
+--partialSums' acc ns : Adds each number in the list ns to the value of acc,
+--a number at a time 
+partialSums' = \acc -> \ns -> if null ns then 
+                                  ns
+                              else
+                                  head ns + acc:partialSums' (head ns +
+                                                         acc) (tail ns)
+                                  
+--powers n: The list of all positive powers of the number 'n'.
+powers = \n -> powers' n n
+
+--powers' n x: Multiplies the number 'n' by 'x' repeatedly where 'n' 
+--       increases by a multiple of n and puts each answer in a list. 
+powers' = \n -> \x -> n:powers' (n*x) x
+
+--factorials: Gives the list of all positive integers.
+factorials = factorials' 1 1
+
+--factorials' n1 n2: multiplies 'n1' by 'n2' repeatedly where 
+--                    eachtime 'n2' is incremented each time. 
+factorials' = \n1 -> \n2 -> n1 * n2: factorials' (n1*n2) (n2+1)
